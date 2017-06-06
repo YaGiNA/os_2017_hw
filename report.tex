@@ -153,7 +153,20 @@ forkは新たなプロセスを作り、それは子プロセスと呼ばれ、
 forkは親子両方共を返す。
 親では、forkは子のpidを、子では0を返す。
 例えば、以下のプログラム片を考える。
-
+\begin{lstlisting}[language=c]
+  int pid;
+  pid = fork();
+  if(pid > 0){
+    printf("parent: child=%d\n", pid);
+    pid = wait();
+    printf("child %d is done\n", pid);
+  } else if(pid == 0){
+    printf("child: exiting\n");
+    exit();
+  } else {
+    printf("fork error\n");
+  }
+\end{lstlisting}
 
 %
 %
